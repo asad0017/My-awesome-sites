@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Asad's Cool Zone 🌙</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      transition: background-color 0.5s, color 0.5s;
+      background-color: #111;
+      color: white;
+    }
+
+    /* Welcome Page */
+    #enterPage {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: linear-gradient(to bottom right, #00f7ff, #000);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    #enterPage h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px black;
+    }
+
+    #enterPage button {
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #000;
+      color: #00f7ff;
+      border: 2px solid #00f7ff;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #enterPage button:hover {
+      background-color: #00f7ff;
+      color: black;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .btn {
+      background: #00f7ff;
+      border: none;
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #0ff;
+      color: #000;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 22px;
+      color: #ffeb3b;
+      font-weight: bold;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    .toggle {
+      background: #444;
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    audio {
+      margin-top: 20px;
+    }
+
+    #mainContent {
+      display: none;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Enter Page -->
+  <div id="enterPage">
+    <h1>🌟 Welcome to Asad's Cool Zone 🌟</h1>
+    <button onclick="enterSite()">Enter</button>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent">
+    <h1>Welcome to Asad's Cool Zone 😎</h1>
+
+    <input type="text" id="nameInput" placeholder="Enter your name..." />
+    <div id="username">Hello, guest!</div>
+
+    <button class="btn" onclick="showTip()">🔥 Free Fire Tip</button>
+    <button class="btn" onclick="showRoast()">😂 Roast Me</button>
+    <button class="btn" onclick="showQuote()">💡 Life Quote</button>
+    <button class="btn" onclick="showIslamic()">🕌 Islamic Quote</button>
+
+    <div id="result"></div>
+
+    <div class="toggle" onclick="toggleMode()">🌗 Toggle Light/Dark Mode</div>
+
+    <audio controls>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    const tips = [
+      "Always go for the headshot. One tap = domination.",
+      "Use gloo walls smartly. Don’t spam.",
+      "Adjust DPI and sensitivity together for smooth aim.",
+      "Never reload in open fights, crouch + reload = safe."
+    ];
+
+    const roasts = [
+      "Even bots call you 'noob bhai'. 😂",
+      "Your KD ratio is just hiding from embarrassment!",
+      "Lag is your excuse, not your skill 😆",
+      "Free Fire thought you were an NPC!"
+    ];
+
+    const quotes = [
+      "Work hard in silence, let success be your noise.",
+      "Stay humble, hustle hard.",
+      "Real legends don’t flex, they inspire.",
+      "Today’s pain is tomorrow’s strength."
+    ];
+
+    const islamic = [
+      "Indeed, with hardship comes ease. – Quran 94:6",
+      "So remember Me; I will remember you. – Quran 2:152",
+      "And He is with you wherever you are. – Quran 57:4",
+      "Put your trust in Allah. – Quran 3:159"
+    ];
+
+    function showRandom(arr) {
+      const random = arr[Math.floor(Math.random() * arr.length)];
+      document.getElementById("result").textContent = random;
+    }
+
+    function showTip() {
+      showRandom(tips);
+    }
+
+    function showRoast() {
+      showRandom(roasts);
+    }
+
+    function showQuote() {
+      showRandom(quotes);
+    }
+
+    function showIslamic() {
+      showRandom(islamic);
+    }
+
+    function toggleMode() {
+      const body = document.body;
+      if (body.style.backgroundColor === "white") {
+        body.style.backgroundColor = "#111";
+        body.style.color = "white";
+      } else {
+        body.style.backgroundColor = "white";
+        body.style.color = "black";
+      }
+    }
+
+    const nameInput = document.getElementById("nameInput");
+    const username = document.getElementById("username");
+
+    nameInput.addEventListener("input", () => {
+      const name = nameInput.value.trim();
+      username.textContent = name ? `Hello, ${name}!` : "Hello, guest!";
+    });
+
+    function enterSite() {
+      document.getElementById("enterPage").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
